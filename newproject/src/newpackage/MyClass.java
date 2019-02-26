@@ -6,7 +6,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class MyClass {
 
 	public static void main(String[] args){
-		System.out.println("Hello World!");
 		System.setProperty("webdriver.chrome.driver", "C:\\Selenium\\ChromeDriver\\chromedriver.exe");
 		WebDriver driver = new ChromeDriver();
 		//driver.get("http://www.google.com");
@@ -27,7 +26,7 @@ public class MyClass {
 		 */
 		if(actualTitle.contentEquals(expectedTitle)){
 			System.out.println("Test Passed!");	
-		} else{
+		} else {
 			System.out.println("Test Failed");
 		}		
 
