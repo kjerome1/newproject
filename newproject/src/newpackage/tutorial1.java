@@ -34,4 +34,3 @@ public class tutorial1 {
 	
 	
 }
-///html/body/div[2]/table/tbody/tr/td[1]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr[2]
