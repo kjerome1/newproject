@@ -20,6 +20,9 @@ public class tutorial1 {
 			Driver.delay(3);
 			driver.findElement(By.xpath("//a[contains(text(),'Flights')]")).click();
 			
+			Driver.selectDepartingFrom(driver, "London");
+			Driver.delay(3);
+			
 			driver.findElement(By.xpath("//input[@name = 'findFlights']")).click();
 			//Driver.delay(driver, 10);
 			//driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
