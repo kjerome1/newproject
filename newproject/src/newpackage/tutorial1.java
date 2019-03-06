@@ -1,8 +1,5 @@
 package newpackage;
 
-import java.util.concurrent.TimeUnit;
-
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class tutorial1 {
@@ -25,7 +22,7 @@ public class tutorial1 {
 			Driver.selectDepartingFrom(driver, "London");
 			Driver.departingDate(driver, 4, 1);
 			Driver.selectArrivingIn(driver, "New York");
-			Driver.arivalDate(driver, 4, 14);
+			Driver.arrivalDate(driver, 4, 14);
 			Driver.selectServiceClass(driver, "Business");
 			Driver.selectAirline(driver, "Pangea Airlines");
 			Driver.delay(10);

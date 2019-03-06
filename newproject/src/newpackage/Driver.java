@@ -189,7 +189,7 @@ public class Driver {
 	 * @param month - integer, 1=January, 2=February, etc. 
 	 * @param day - integer
 	 */
-	public static void arivalDate(WebDriver driver, int month, int day){
+	public static void arrivalDate(WebDriver driver, int month, int day){
 		try{
 			driver.findElement(By.xpath("//select[@name='toMonth']/option[@value='"+month+"']")).click(); 
 			driver.findElement(By.xpath("//select[@name='toDay']/option[@value='"+day+"']")).click();
