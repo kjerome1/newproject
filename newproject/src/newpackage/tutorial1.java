@@ -12,28 +12,31 @@ public class tutorial1 {
 		String user = "tutorial";
 		WebDriver driver = Driver.createDriver();
 		driver.get(url);
+		
 		try{
-			driver.findElement(By.xpath("//input[@name = 'userName']")).sendKeys(user);
-			driver.findElement(By.xpath("//input[@name = 'password']")).sendKeys(user);
-			driver.findElement(By.xpath("//input[@name = 'submit']")).click();
+			Driver.enterUsername(driver, user);
+			Driver.enterPassword(driver, user);
+			Driver.submitLogin(driver);
 			
 			Driver.delay(3);
-			driver.findElement(By.xpath("//a[contains(text(),'Flights')]")).click();
-			
+			Driver.clickFlights(driver);
+			Driver.selectFlightType(driver, "oneway");
+			Driver.amtPassengers(driver, 2);
 			Driver.selectDepartingFrom(driver, "London");
-			Driver.delay(3);
+			Driver.departingDate(driver, 4, 1);
+			Driver.selectArrivingIn(driver, "New York");
+			Driver.arivalDate(driver, 4, 14);
+			Driver.selectServiceClass(driver, "Business");
+			Driver.selectAirline(driver, "Pangea Airlines");
+			Driver.delay(10);
+			Driver.findFlights(driver);
 			
-			driver.findElement(By.xpath("//input[@name = 'findFlights']")).click();
-			//Driver.delay(driver, 10);
-			//driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-			Driver.delay(3);
+			System.out.println("Automation complete!");
 		} catch (Exception e){
 			System.out.println("Something went wrong!");
 			System.err.println(e);
+		} finally {
+			driver.close();
 		}
-		
-		driver.close();
-	}
-	
-	
+	}	
 }

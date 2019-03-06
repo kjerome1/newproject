@@ -218,8 +218,9 @@ public class Driver {
 	 */
 	public static void selectAirline(WebDriver driver, String airline){
 		try{
-			driver.findElement(By.xpath("//select[@name='airline']/option[@value='"+airline+"']")).click();
+			driver.findElement(By.xpath("//select[@name='airline']/option[contains(text(),'"+airline+"')]")).click();
 		} catch(Exception e){
+			System.out.println("Sorry! "+airline+" is not an option.");
 			System.err.println(e);
 		}
 	}	
