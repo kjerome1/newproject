@@ -7,6 +7,17 @@ import org.openqa.selenium.WebElement;
 public class Form {
 	public static void main(String[] args){
 		WebDriver driver = Driver.createDriver();
+		
+		//form1(driver);
+		form2(driver);
+		
+	}
+	
+	/**
+	 * Created for Forms & WebDriver tutorial
+	 * @param driver - WebDriver
+	 */
+	public static void form1(WebDriver driver){
 		try{		
 			String baseUrl = "http://demo.guru99.com/test/login.html";
 			driver.get(baseUrl);
@@ -52,7 +63,53 @@ public class Form {
 		} finally {
 			driver.close();
 		}
-		
+	}
+	
+	/**
+	 * Created for CheckBox & Radio Button tutorial
+	 * @param driver - WebDriver
+	 */
+	public static void form2(WebDriver driver){
+		try{
+			driver.get("http://demo.guru99.com/test/radio.html");
+			WebElement radio1 = driver.findElement(By.id("vfb-7-1"));
+			WebElement radio2 = driver.findElement(By.id("vfb-7-2"));
+			
+			//radio button1 is selected
+			radio1.click();
+			System.out.println("Radio button option 1 is selected");
+			
+			//radio button 1 is de-selected and radio button2 is selected
+			radio2.click();
+			System.out.println("Radio button option 2 is selected");
+			
+			//selecting checkbox
+			WebElement option1 = driver.findElement(By.id("vfb-6-0"));
+			
+			//this will toggle the check box
+			option1.click();
+			
+			//check whether the check box is toggled on
+			if(option1.isSelected()){
+				System.out.println("Checkbox is toggled on");
+			} else {
+				System.out.println("Checkbox is toggled off");
+			}
+			
+			//selecting checkbox and using isSelected method
+			driver.get("http://demo.guru99.com/test/facebook.html");
+			WebElement chkFBPersist = driver.findElement(By.id("persist_box"));
+			for(int i=0;i<2 ;i++){
+				chkFBPersist.click();
+				System.out.println("Facebook Persists Checkbox Status is -  "+chkFBPersist.isSelected());
+			}			
+			
+		} catch (Exception e){
+			System.out.println("Something went wrong!");
+			System.err.println(e);
+		} finally {
+			driver.close();
+		}
 	}
 
 }
