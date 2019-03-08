@@ -3,13 +3,15 @@ package newpackage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
 public class Form {
 	public static void main(String[] args){
 		WebDriver driver = Driver.createDriver();
 		
 		//form1(driver);
-		form2(driver);
+		//form2(driver);
+		accessDropDown(driver);
 		
 	}
 	
@@ -110,6 +112,34 @@ public class Form {
 		} finally {
 			driver.close();
 		}
+	}
+	
+	/**
+	 * Created for Selenium Webdriver DropDown tutorial
+	 * @param driver - WebDriver
+	 */
+	public static void accessDropDown(WebDriver driver){
+		String baseUrl = "http://demo.guru99.com/test/newtours/register.php";
+		try{
+			driver.get(baseUrl);
+			Select drpCountry = new Select(driver.findElement(By.name("country")));
+			drpCountry.selectByVisibleText("ANTARCTICA");
+			
+			//select items in a multiple select elements
+			driver.get("http://jsbin.com/osebed/2");
+			Select fruits = new Select(driver.findElement(By.id("fruits")));
+			fruits.selectByVisibleText("Banana");
+			fruits.selectByIndex(1);
+			
+			System.out.println("Access drop down test complete!");
+			
+		} catch (Exception e){
+			System.out.println("Something went wrong!");
+			System.err.println(e);
+		} finally {
+			driver.close();
+		}
+		
 	}
 
 }
