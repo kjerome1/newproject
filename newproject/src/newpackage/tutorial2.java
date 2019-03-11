@@ -1,7 +1,11 @@
 package newpackage;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 
 public class tutorial2 {
 
@@ -10,9 +14,9 @@ public class tutorial2 {
 		WebDriver driver = Driver.createDriver();
 		
 		//clickLink1(driver);
-		clickLink2(driver);
-		
-
+		//clickLink2(driver);
+		//mouseEvents1(driver);
+		actionsEvent(driver);
 	}
 	
 	/**
@@ -60,12 +64,37 @@ public class tutorial2 {
 	}
 	
 	/**
-	 * incomplete
+	 * How to get Multiple links with the same Link Text
+	 * So, how to get around the above problem? In cases where there are multiple links with the same link text, 
+	 * and we want to access the links other than the first one, how do we go about it?
+	 * 
+	 * In such cases, generally, different locators viz... By.xpath(), By.cssSelector() or By.tagName() are used.
+	 * Most commonly used is By.xpath(). It is the most reliable one but it looks complex and non-readable too.
+	 */
+	
+	/**
+	 * Checks the background color before and after hovering the cursor over an element
 	 * @param driver
-	 *//*
-	public static void clickLink3(WebDriver driver){
-		String baseUrl = "";
+	 */
+	public static void mouseEvents1(WebDriver driver){
+		String baseUrl = "http://demo.guru99.com/test/newtours/";
 		try{
+			driver.get(baseUrl);
+			WebElement link_Home = driver.findElement(By.linkText("Home"));
+			WebElement td_Home = driver.findElement(By.xpath("//html/body/div"
+                    + "/table/tbody/tr/td"
+                    + "/table/tbody/tr/td"
+                    + "/table/tbody/tr/td"
+                    + "/table/tbody/tr"));
+			Actions builder = new Actions(driver);
+			Action mouseOverHome = builder.moveToElement(link_Home).build();
+			
+			String bgColor = td_Home.getCssValue("background-color");
+			System.out.println("Before hover: "+bgColor);
+			
+			mouseOverHome.perform();
+			bgColor = td_Home.getCssValue("background-color");
+			System.out.println("After hover: "+bgColor);
 			
 		}catch(Exception e){
 			System.out.println("Something went wrong!");
@@ -73,6 +102,38 @@ public class tutorial2 {
 		}finally{
 			driver.close();
 		}
-	}*/
+	}
+	
+	/**
+	 * You can build a series of actions using the Action and Actions classes. 
+	 * Just remember to close the series with the build() method
+	 * @param driver
+	 */
+	public static void actionsEvent(WebDriver driver){
+		String baseUrl = "http://www.facebook.com/";
+		try{
+			driver.get(baseUrl);
+			WebElement txtUsername = driver.findElement(By.id("email"));
+			
+			Actions builder = new Actions(driver);
+			Action seriesOfActions = builder.moveToElement(txtUsername)
+					.click()
+					.keyDown(txtUsername, Keys.SHIFT)
+					.sendKeys(txtUsername, "hello")
+					.keyUp(txtUsername, Keys.SHIFT)
+					.doubleClick(txtUsername)
+					.contextClick()
+					.build();
+			
+			seriesOfActions.perform();
+		}catch(Exception e){
+			System.out.println("Something went wrong!");
+			System.err.println(e);
+		}finally{
+			driver.close();
+		}
+	}
+	
+	
 
 }
