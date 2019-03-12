@@ -16,7 +16,8 @@ public class tutorial2 {
 		//clickLink1(driver);
 		//clickLink2(driver);
 		//mouseEvents1(driver);
-		actionsEvent(driver);
+		//actionsEvent(driver);
+		uploadFile(driver);
 	}
 	
 	/**
@@ -126,6 +127,37 @@ public class tutorial2 {
 					.build();
 			
 			seriesOfActions.perform();
+		}catch(Exception e){
+			System.out.println("Something went wrong!");
+			System.err.println(e);
+		}finally{
+			driver.close();
+		}
+	}
+	
+	/**
+	 * Upload test file to the test site 'http://demo.guru99.com/test/upload/'
+	 * @param driver - WebDriver
+	 */
+	public static void uploadFile(WebDriver driver){
+		String baseUrl = "http://demo.guru99.com/test/upload/";
+		try{
+			driver.get(baseUrl);
+			WebElement uploadElement = driver.findElement(By.id("uploadfile_0"));
+			
+			//enter the file path onto the file-selection input field
+			Driver.delay(3);
+			uploadElement.sendKeys("C://Users/kjerome/Desktop/test.txt");
+			
+			//check the "I accept the terms of service" check box
+			Driver.delay(3);
+			driver.findElement(By.id("terms")).click();
+			
+			//click the "uploadFile" button
+			Driver.delay(3);
+			driver.findElement(By.name("send")).click();
+			
+			System.out.println("Upload file test complete.");			
 		}catch(Exception e){
 			System.out.println("Something went wrong!");
 			System.err.println(e);
